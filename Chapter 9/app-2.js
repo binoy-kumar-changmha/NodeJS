@@ -5,7 +5,7 @@
 const express = require('express');
 
 // local modules
-const routes = require('./routes');
+// const routes = require('./routes');
 
 const app = express();
 
