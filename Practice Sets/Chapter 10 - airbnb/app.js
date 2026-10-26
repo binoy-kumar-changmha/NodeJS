@@ -1,6 +1,6 @@
 const express = require("express");
-const userRouter = require("./userRouter");
-const adminRouter = require("./adminRouter");
+const userRouter = require("./routes/userRouter");
+const adminRouter = require("./routes/adminRouter");
 
 const app = express();
 
@@ -17,12 +17,13 @@ app.get("/", (req, res) => {
 });
 
 // Use routers
-app.use(userRouter);
-app.use(adminRouter);
+app.use("/user", userRouter);
+app.use("/host", adminRouter);
 
 // 404 Handler
 app.use((req, res) => {
   res.status(404).send("<h1>404 - Page Not Found</h1>");
+  // changing status is important
 });
 
 const PORT = 3001;
