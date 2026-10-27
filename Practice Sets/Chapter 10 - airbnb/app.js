@@ -1,13 +1,15 @@
 const path = require("path");
 const express = require("express");
-const rootDir = require("./utils/path");
+
+// local modules
 const userRouter = require("./routes/userRouter");
 const adminRouter = require("./routes/adminRouter");
+const rootDir = require("./utils/path")
 
 const app = express();
 
 // Built-in Express middleware to parse form data (URL-encoded bodies)
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
 
 // Homepage
 app.get("/", (req, res) => {

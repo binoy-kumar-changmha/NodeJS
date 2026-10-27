@@ -1,7 +1,11 @@
+// core modules
 const path = require('path');
-const express = require('express');
-const rootDir = require('../utils/path');
 
+// external modules
+const express = require('express');
+
+// local modules
+const rootDir = require('../utils/path');
 const userRouter = express.Router();
 
 // GET: Display simple user form
