@@ -1,14 +1,12 @@
+const path = require('path');
 const express = require('express');
+const rootDir = require('../utils/path');
 
 const adminRouter = express.Router();
 
 // GET: Simple admin dashboard with HTML tags
-adminRouter.get('/admin', (req, res) => {
-  res.send(`
-    <h1>Admin Panel</h1>
-    <p>Welcome to the <strong>Admin Dashboard</strong>.</p>
-    <a href="/">Go to Homepage</a>
-  `);
+adminRouter.get(['/admin', '/'], (req, res) => {
+  res.sendFile(path.join(rootDir, 'views', 'admin.html'));
 });
 
 module.exports = adminRouter;

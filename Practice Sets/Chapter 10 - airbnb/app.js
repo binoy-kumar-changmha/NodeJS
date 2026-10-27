@@ -1,4 +1,6 @@
+const path = require("path");
 const express = require("express");
+const rootDir = require("./utils/path");
 const userRouter = require("./routes/userRouter");
 const adminRouter = require("./routes/adminRouter");
 
@@ -9,11 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Homepage
 app.get("/", (req, res) => {
-  res.send(`
-    <h1>Homepage</h1>
-    <p><a href="/user">Go to User Form</a></p>
-    <p><a href="/admin">Go to Admin Dashboard</a></p>
-  `);
+  res.sendFile(path.join(rootDir, "views", "home.html"));
 });
 
 // Use routers
@@ -22,7 +20,7 @@ app.use("/host", adminRouter);
 
 // 404 Handler
 app.use((req, res) => {
-  res.status(404).send("<h1>404 - Page Not Found</h1>");
+  res.status(404).sendFile(path.join(rootDir, "views", "404.html"));
   // changing status is important
 });
 
