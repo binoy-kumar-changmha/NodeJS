@@ -11,6 +11,9 @@ const app = express();
 // Built-in Express middleware to parse form data (URL-encoded bodies)
 app.use(express.urlencoded());
 
+// Serve static files (like output.css, images) from the public directory
+app.use(express.static(path.join(rootDir, "public")));
+
 // Homepage
 app.get("/", (req, res) => {
   res.sendFile(path.join(rootDir, "views", "home.html"));
