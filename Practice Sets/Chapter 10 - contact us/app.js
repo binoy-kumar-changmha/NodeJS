@@ -11,7 +11,7 @@ app.use(express.urlencoded());
 app.get("/", (req, res) => {
   res.sendFile(path.join(rootDir, "views", "home.html"));
 })
-app.use(contactRouter);
+app.use("/contact-us", contactRouter);
 
 app.use((req, res) => {
   res.status(404).sendFile(path.join(rootDir, "views", "404.html"));
