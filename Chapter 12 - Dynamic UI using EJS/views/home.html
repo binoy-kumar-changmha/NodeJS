@@ -7,9 +7,18 @@
   <!-- Link compiled Tailwind CSS -->
   <link rel="stylesheet" href="/css/output.css">
 </head>
-<body>
-  <h1 class="text-red-500 text-4xl">Homepage of airbnb</h1>
-  <p><a href="/user">Go to User Form</a></p>
-  <p><a href="/host/admin">Go to Admin Dashboard</a></p>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex items-center justify-center p-4">
+  <main class="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center">
+    <h1 class="text-3xl font-bold text-rose-500 mb-2">Airbnb</h1>
+    <br>
+    <div class="space-y-3">
+      <a href="/user/home-registration" class="block w-full py-2.5 px-4 bg-rose-500 hover:bg-rose-600 text-white font-medium rounded-lg transition text-center">
+        Add Home
+      </a>
+      <a href="/host/admin" class="block w-full py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition text-center">
+        Admin Panel
+      </a>
+    </div>
+  </main>
 </body>
 </html>
