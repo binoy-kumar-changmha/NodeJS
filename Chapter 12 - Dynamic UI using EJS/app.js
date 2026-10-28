@@ -7,6 +7,8 @@ const adminRouter = require("./routes/adminRouter");
 const rootDir = require("./utils/path")
 
 const app = express();
+app.set("view engine", "ejs");
+app.set("views", "views");
 
 // Built-in Express middleware to parse form data (URL-encoded bodies)
 app.use(express.urlencoded());
