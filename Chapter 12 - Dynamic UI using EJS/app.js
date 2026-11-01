@@ -18,7 +18,7 @@ app.use(express.static(path.join(rootDir, "public")));
 
 // Homepage
 app.get("/", (req, res) => {
-  res.sendFile(path.join(rootDir, "views", "home.html"));
+  res.render("home");
 });
 
 // Use routers
