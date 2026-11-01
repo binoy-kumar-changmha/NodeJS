@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 
 // local modules
-const userRouter = require("./routes/userRouter");
+const { userRouter, registeredHomes } = require("./routes/userRouter");
 const adminRouter = require("./routes/adminRouter");
 const rootDir = require("./utils/path")
 
@@ -18,7 +18,8 @@ app.use(express.static(path.join(rootDir, "public")));
 
 // Homepage
 app.get("/", (req, res) => {
-  res.render("home");
+  // Pass registeredHomes array to home.ejs so it can loop over the list of homes
+  res.render("home", { registeredHomes: registeredHomes });
 });
 
 // Use routers

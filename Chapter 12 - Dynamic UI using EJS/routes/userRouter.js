@@ -5,18 +5,21 @@ const path = require('path');
 const express = require('express');
 
 // local modules
-const rootDir = require('../utils/path');
+// const rootDir = require('../utils/path');
 const userRouter = express.Router();
+const registeredHomes = [];
 
 // GET: Display simple user form
 userRouter.get(['/home-registration'], (req, res) => {
-  res.sendFile(path.join(rootDir, 'views', 'user.html'));
+  res.render('user', {registeredHomes: registeredHomes});
 });
 
 // POST: Handle form submission
 userRouter.post(['/welcome-msg'], (req, res) => {
   console.log("User submitted:", req.body);
-  res.sendFile(path.join(rootDir, 'views', 'welcome.html'));
+  registeredHomes.push(req.body);
+  res.render('welcome');
 });
 
-module.exports = userRouter;
+exports.userRouter = userRouter;
+exports.registeredHomes = registeredHomes;
