@@ -1,0 +1,38 @@
+const path = require("path");
+const express = require("express");
+
+// local modules
+const { userRouter, registeredHomes } = require("./routes/userRouter");
+const adminRouter = require("./routes/adminRouter");
+const rootDir = require("./utils/path")
+
+const app = express();
+app.set("view engine", "ejs");
+app.set("views", "views");
+
+// Built-in Express middleware to parse form data (URL-encoded bodies)
+app.use(express.urlencoded());
+
+// Serve static files (like output.css, images) from the public directory
+app.use(express.static(path.join(rootDir, "public")));
+
+// Homepage
+app.get("/", (req, res) => {
+  // Pass registeredHomes array to home.ejs so it can loop over the list of homes
+  res.render("home", { registeredHomes: registeredHomes });
+});
+
+// Use routers
+app.use("/user", userRouter);
+app.use("/host", adminRouter);
+
+// 404 Handler
+app.use((req, res) => {
+  res.status(404).render("404");
+  // changing status is important
+});
+
+const PORT = 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
