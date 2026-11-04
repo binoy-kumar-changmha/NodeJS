@@ -1,3 +1,8 @@
+// core modules
+const fs = require("fs");
+const path = require("path");
+const rootDir = require("../utils/path");
+
 // fake database
 const registeredHomes = [];
 
@@ -12,11 +17,22 @@ module.exports = class Home {
 
   // saving home method
   save() {
-    registeredHomes.push(this);
+    Home.fetchAll((registeredHomes) => {
+      registeredHomes.push(this);
+      const homeDataPath = path.join(rootDir, 'data', 'home.json');
+      fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), err => {
+        if (err) {
+          console.log("Error: ", err);
+        }
+      });
+    });
   }
 
   // fetching all homes
-  static fetchAll() {
-    return registeredHomes;
+  static fetchAll(callback) {
+    const homeDataPath = path.join(rootDir, 'data', 'home.json');
+    fs.readFile(homeDataPath, (err, data) => {
+      callback(!err && data.length > 0 ? JSON.parse(data) : []);
+    });
   }
 };

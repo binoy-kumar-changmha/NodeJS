@@ -16,8 +16,7 @@ const showRegistrationForm = (req, res) => {
 // POST: Handle form submission
 const handleFormSubmission = (req, res) => {
   const { homeName, price, location, rating, photoUrl } = req.body;
-  const allHomes = Home.fetchAll();
-  const fallbackPhoto = DEFAULT_PHOTOS[allHomes.length % DEFAULT_PHOTOS.length];
+  const fallbackPhoto = DEFAULT_PHOTOS[Math.floor(Math.random() * DEFAULT_PHOTOS.length)];
 
   const home = new Home(
     homeName || "Cozy Stay",
@@ -28,14 +27,13 @@ const handleFormSubmission = (req, res) => {
   );
   home.save();
 
-  console.log("Registered new home via Model:", home);
   res.render('welcome');
 };
 
 // GET: Fetch all homes and render homepage
 const getHomes = (req, res) => {
-  const registeredHomes = Home.fetchAll();
-  res.render('home', { registeredHomes: registeredHomes });
+  Home.fetchAll((registeredHomes) =>
+    res.render('home', { registeredHomes: registeredHomes }));
 };
 
 // GET: Admin dashboard
