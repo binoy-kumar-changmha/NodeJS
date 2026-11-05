@@ -1,0 +1,17 @@
+const Home = require("../Models/home");
+
+// Curated high-resolution fallback photos for stays
+const DEFAULT_PHOTOS = [
+  "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
+];
+
+// GET: Fetch all homes and render homepage
+const getHomes = (req, res) => {
+  Home.fetchAll((registeredHomes) =>
+    res.render('home', { registeredHomes: registeredHomes }));
+};
+
+exports.getHomes = getHomes;
