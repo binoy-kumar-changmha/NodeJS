@@ -14,4 +14,16 @@ const getHomes = (req, res) => {
     res.render('home', { registeredHomes: registeredHomes }));
 };
 
+const getFavoriteHomes = (req, res) => {
+  Home.fetchAll((registeredHomes) =>
+    res.render('favourites', { registeredHomes: registeredHomes }));
+};
+
+const getBookings = (req, res) => {
+  Home.fetchAll((registeredHomes) =>
+    res.render('mybookings', { registeredHomes: registeredHomes }));
+};
+
 exports.getHomes = getHomes;
+exports.getFavoriteHomes = getFavoriteHomes;
+exports.getBookings = getBookings;
