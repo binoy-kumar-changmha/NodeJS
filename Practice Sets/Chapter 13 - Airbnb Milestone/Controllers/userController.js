@@ -11,17 +11,17 @@ const DEFAULT_PHOTOS = [
 // GET: Fetch all homes and render homepage
 const getHomes = (req, res) => {
   Home.fetchAll((registeredHomes) =>
-    res.render('home', { registeredHomes: registeredHomes }));
+    res.render('user/home', { registeredHomes: registeredHomes }));
 };
 
 const getFavoriteHomes = (req, res) => {
   Home.fetchAll((registeredHomes) =>
-    res.render('favourites', { registeredHomes: registeredHomes }));
+    res.render('user/favourites', { registeredHomes: registeredHomes }));
 };
 
 const getBookings = (req, res) => {
   Home.fetchAll((registeredHomes) =>
-    res.render('mybookings', { registeredHomes: registeredHomes }));
+    res.render('user/mybookings', { registeredHomes: registeredHomes }));
 };
 
 exports.getHomes = getHomes;

@@ -10,7 +10,7 @@ const DEFAULT_PHOTOS = [
 
 // GET: Display home registration form
 const showRegistrationForm = (req, res) => {
-  res.render('add-home');
+  res.render('host/add-home');
 };
 
 // POST: Handle form submission
@@ -27,13 +27,13 @@ const handleFormSubmission = (req, res) => {
   );
   home.save();
 
-  res.render('welcome');
+  res.render('host/welcome');
 };
 
 // GET: Host dashboard
 const hostDashboard = (req, res) => {
   Home.fetchAll((registeredHomes) => {
-    res.render('host-dashboard', { registeredHomes });
+    res.render('host/host-dashboard', { registeredHomes });
   });
 };
 
