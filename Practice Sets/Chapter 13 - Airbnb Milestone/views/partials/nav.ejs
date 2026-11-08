@@ -9,7 +9,7 @@
     </a>
     <nav class="flex items-center space-x-2 sm:space-x-4">
       <a href="/" class="<%= (typeof currentPage !== 'undefined' && currentPage === 'home') ? 'bg-rose-600 font-semibold' : 'hover:bg-rose-600 font-medium' %> px-3 py-1.5 rounded-lg text-sm sm:text-base transition">Home</a>
-      <a href="/favourites" class="<%= (typeof currentPage !== 'undefined' && currentPage === 'favourite') ? 'bg-rose-600 font-semibold' : 'hover:bg-rose-600 font-medium' %> px-3 py-1.5 rounded-lg text-sm sm:text-base transition">Favourites</a>
+      <a href="/favourites" class="<%= (typeof currentPage !== 'undefined' && (currentPage === 'favourite' || currentPage === 'favourites' || currentPage === 'favorite')) ? 'bg-rose-600 font-semibold' : 'hover:bg-rose-600 font-medium' %> px-3 py-1.5 rounded-lg text-sm sm:text-base transition">Favourites</a>
       <a href="/host/dashboard" class="<%= (typeof currentPage !== 'undefined' && currentPage === 'host') ? 'bg-rose-600 font-semibold' : 'hover:bg-rose-600 font-medium' %> px-3 py-1.5 rounded-lg text-sm sm:text-base transition">Host Desk</a>
       <a href="/mybookings" class="<%= (typeof currentPage !== 'undefined' && currentPage === 'mybookings') ? 'bg-rose-600 font-semibold' : 'hover:bg-rose-600 font-medium' %> px-3 py-1.5 rounded-lg text-sm sm:text-base transition">My Bookings</a>
     </nav>
