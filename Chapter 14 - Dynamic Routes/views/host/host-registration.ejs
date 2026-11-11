@@ -1,0 +1,73 @@
+<%- include('../partials/head', { pageTitle: 'Airbnb - Homepage' }) %>
+<%- include('../partials/nav', { currentPage: 'home' }) %>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+    <% if (!registeredHomes || registeredHomes.length === 0) { %>
+      <!-- Empty State -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center max-w-md mx-auto my-12">
+        <div class="w-16 h-16 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533 1.025c1.954 3.83 4.12 8.358 4.214 11.206.079 2.399-.861 4.717-2.578 6.357-1.848 1.765-4.321 2.643-6.92 2.643s-5.072-.878-6.92-2.643c-1.717-1.64-2.657-3.958-2.578-6.357.094-2.848 2.26-7.376 4.214-11.206l.533-1.025C12.537 1.963 13.992 1 16 1zm0 2c-1.282 0-2.316.634-3.376 2.53l-.529 1.018C10.157 10.36 8.04 14.78 7.95 17.5c-.062 1.884.673 3.708 2.022 4.996C11.417 23.868 13.568 24.5 16 24.5s4.583-.632 6.028-2.004c1.349-1.288 2.084-3.112 2.022-4.996-.09-2.72-2.207-7.14-4.145-10.952l-.529-1.018C18.316 3.634 17.282 3 16 3zm0 7.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Welcome to airbnb</h2>
+        <p class="text-gray-500 text-sm mb-6">No homes listed yet. Be the first to host your home!</p>
+        <a href="/user/home-registration" class="inline-block px-5 py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-medium rounded-lg text-sm transition shadow-sm">
+          Add Your Home
+        </a>
+      </div>
+    <% } else { %>
+      <!-- Clean Header -->
+      <div class="mb-6">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Available Stays</h1>
+      </div>
+
+      <!-- Grid of Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <% registeredHomes.forEach(home => { %>
+          <div class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition duration-200">
+            <!-- Photo Container -->
+            <div class="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
+              <img 
+                src="<%= home.photoUrl %>" 
+                alt="<%= home.homeName %>" 
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                onerror="this.src='https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80'"
+              >
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-4 flex flex-col flex-1">
+              <div class="flex items-center justify-between text-sm mb-1 gap-2">
+                <!-- Location with Formal Map Pin Icon -->
+                <span class="flex items-center gap-1.5 font-bold text-gray-900 truncate">
+                  <svg class="w-4 h-4 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <span class="truncate"><%= home.location %></span>
+                </span>
+
+                <!-- Rating -->
+                <span class="flex items-center gap-1 font-semibold text-gray-900 text-xs shrink-0">
+                  <span class="text-rose-500">★</span> <%= home.rating %>
+                </span>
+              </div>
+
+              <!-- Home Name Subtitle -->
+              <p class="text-sm text-gray-500 truncate mb-3"><%= home.homeName %></p>
+
+              <!-- Price -->
+              <div class="mt-auto pt-2 border-t border-gray-50 flex items-baseline gap-1">
+                <span class="font-bold text-gray-900 text-base">৳ <%= home.price %></span>
+                <span class="text-xs text-gray-500 font-normal">night</span>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } %>
+  </main>
+
+<%- include('../partials/footer') %>
